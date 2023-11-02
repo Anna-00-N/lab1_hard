@@ -37,5 +37,5 @@ double circle_by_points(int flag, double R, double x, double a, double b, double
 	if(x==a) return b; if(x==c) return d; 
 	double xc, yc, res;
 	circle_points(flag, R, x, a, b, c, d, &xc, &yc);
-	return sqrt(R*R-pow(x-xc,2))+yc;
+	return pow(-1,flag)*sqrt(R*R-pow(x-xc,2))+yc;
 }

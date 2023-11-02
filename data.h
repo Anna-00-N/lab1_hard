@@ -6,7 +6,8 @@ std::vector<std::string> my_data(){
 	return {
 		"-5 line 0 -3",
 		"-3 line 1 3",
-		"3 circle plus R1 -3 0 0",
+		"0 circle minus R1 -3 0 3",
+		"3 circle plus R2 0 3 0",
 		"8 line 0.6 0 3 0",
 		"N line 0 3"
 		//"-3 line 1 3",

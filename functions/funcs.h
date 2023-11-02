@@ -41,11 +41,9 @@ void matlab2(double X, double Y, double minx, double maxx, double miny, double m
 			s>>d; 
 
 			if(d=="circle"){ //обозначаются линии к центру кругов
-				 find_points(my_data(), X, r_vars, &xc, &yc);
-				 k1 = (yc-(way1(minx0, r_vars)))/(xc-minx0);
-				 k2 = ((way1(maxx0, r_vars))-yc)/(maxx0-xc);
-				 s1<<"m"<<m<<"= "<<minx0<<":0.05:"<<xc<<";";s2<<"t"<<m<<"=m"<<m<<".*"<<k1<<"+"<<yc<<";";
-				 s1<<"m"<<m+1<<"= "<<xc<<":0.05:"<<maxx0<<";";s2<<"t"<<m+1<<"=m"<<m+1<<".*"<<k2<<"+"<<yc<<";";
+				 find_points(my_data(), (maxx0+minx0)/2, r_vars, &xc, &yc);
+				 s1<<"m"<<m<<"= ["<<minx0<<" "<<xc<<"]; "<<"t"<<m<<"= ["<<way1(minx0, r_vars)<<" "<<yc<<"]; "<<endl;
+				 s1<<"m"<<m+1<<"= ["<<xc<<" "<<maxx0<<"]; "<<"t"<<m+1<<"= ["<<yc<<" "<<way1(maxx0, r_vars)<<"]; "<<endl;
 				 m+=2;
 			}
 		
@@ -54,13 +52,14 @@ void matlab2(double X, double Y, double minx, double maxx, double miny, double m
 				s1<<i<<" ";
 				s2<<way1(i, r_vars)<<" ";
 			}
+			s1<<maxx0; s2<<way1(maxx0, r_vars);
 			s1<<"];"<<endl; s2<<"];"<<endl;
 
 			minx0=maxx0+0.00001; //если не будет не будет разрыва
 		}
 
 		std::ofstream fout("graphik.m"); //запись файла
-		fout<<s1.str()<<s2.str()<<script(X,Y,minx,maxx,miny,maxy, j, m); 
+		fout<<s1.str()<<s2.str()<<script(X,Y,minx,maxx,miny,maxy, j, m-1); 
 		fout.close();
 		wcout<<L"\nСоздан файл graphik.m со скриптом для Matlab.\n Чтобы открыть его, введите 9999 и выйдите из цикла!\n\n___________________\n";
 }

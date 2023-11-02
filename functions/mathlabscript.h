@@ -10,11 +10,11 @@ string script(double fx, double fy, double minx,double maxx, double miny, double
 	s<<"minx:1:maxx,zeros(maxx-minx+1),'-k|',";
 	s<<" zeros(maxy-miny+1),miny:1:maxy,'-k_',";
 	for(int i=1; i<=j; i++) s<<" x"<<i<<",y"<<i<<",'-b', ";
-	for(int i=1; i<=m; i++) s<<" m"<<i<<",t"<<i<<",'--m', ";
 	s<<"[minx fx maxx+1], [fy fy fy], '--ro' , ";
 	s<<"[fx fx fx], [miny fy maxy+1], '--ro', ";
 	s<<"[0 0],[miny-1 maxy],'-k^', ";
 	s<<"[minx-1,maxx],[0 0],'-k>', ";
+	for(int i=1; i<=m; i++) s<<" m"<<i<<",t"<<i<<",'--m', ";
 	s<<"'LineWidth', 2); "<<endl;
 	s<<"axis([minx maxx miny maxy]); "<<endl;
 	s<<"set(gca, 'XTick',minx:1:maxx, 'YTick',miny:1:maxy);"<<endl;
