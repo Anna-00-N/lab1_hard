@@ -1,7 +1,7 @@
 #include <sstream>
 #include <string>
-
-string script(double fx, double fy, double minx,double maxx, double miny, double maxy){
+ 
+string script(double fx, double fy, double minx,double maxx, double miny, double maxy, int j, int m){
 	stringstream s;
 	s<<"fx="<<fx<<"; fy="<<fy<<";"<<endl;
 	s<<"minx="<<minx<<";maxx="<<maxx<<";"<<endl;
@@ -9,7 +9,8 @@ string script(double fx, double fy, double minx,double maxx, double miny, double
 	s<<"plot(";
 	s<<"minx:1:maxx,zeros(maxx-minx+1),'-k|',";
 	s<<" zeros(maxy-miny+1),miny:1:maxy,'-k_',";
-	s<<" x,y,'-b', ";
+	for(int i=1; i<=j; i++) s<<" x"<<i<<",y"<<i<<",'-b', ";
+	for(int i=1; i<=m; i++) s<<" m"<<i<<",t"<<i<<",'--m', ";
 	s<<"[minx fx maxx+1], [fy fy fy], '--ro' , ";
 	s<<"[fx fx fx], [miny fy maxy+1], '--ro', ";
 	s<<"[0 0],[miny-1 maxy],'-k^', ";
